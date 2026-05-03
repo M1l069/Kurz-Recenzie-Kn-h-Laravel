@@ -1,45 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="{{ route('books.index') }}" class="reset-link">Back to Books</a>
-    <div class="mb-4 mt-2">
+    <div class="mx-auto w-full max-w-4xl px-4 min-[801px]:px-0">
+        <a href="{{ route('books.index') }}" class="reset-link inline-block mb-4">← Naspäť</a>
 
-        <h1 class="sticky top-0 mb-2 text-2xl">{{ $book->title }}</h1>
+        <div class="mb-6 space-y-3">
 
-        <div class="book-info">
-            <div class="book-author mb-4 text-lg font-semibold">by {{ $book->author }}</div>
-            <div class="book-rating flex items-center">
-                <div class="mr-2 text-sm font-medium text-slate-700">
-                    {{ number_format($book->reviews_avg_rating, 1) }}
-                </div>
-                <span class="book-review-count text-sm text-gray-500">
-          {{ $book->reviews_count }} {{ Str::plural('review', $book->reviews_count) }}
+            <h1 class="sticky top-0 text-2xl font-semibold leading-tight text-slate-900 sm:static">{{ $book->title }}</h1>
+
+            <div class="book-info flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+                <div class="book-author text-base font-semibold text-slate-700 sm:text-lg">od {{ $book->author }}</div>
+                <div class="book-rating flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <div class="mr-0 text-sm font-medium text-slate-700 sm:mr-2">
+                        {{ number_format($book->reviews_avg_rating, 1) }}
+                    </div>
+                    <span class="book-review-count text-sm text-slate-500">
+          {{ $book->reviews_count }} recenzií
         </span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div>
-        <h2 class="mb-4 text-xl font-semibold">Reviews</h2>
-        <ul>
+        <div>
+            <h2 class="mb-4 text-xl font-semibold text-slate-900">Recenzie</h2>
+            <ul class="space-y-4">
             @forelse ($book->reviews as $review)
-                <li class="book-item mb-4">
-                    <div>
-                        <div class="mb-2 flex items-center justify-between">
-                            <div class="font-semibold">Hodnotenie: {{ $review->rating }}/5</div>
-                            <div class="book-review-count">
-                                {{ $review->created_at->format('M j, Y') }}</div>
+                    <li class="book-item p-4 sm:p-5">
+                        <div class="space-y-3">
+                            <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                                <div class="font-semibold text-slate-800">Hodnotenie: {{ $review->rating }}/5</div>
+                                <div class="book-review-count text-xs sm:text-sm">
+                                    {{ $review->created_at->format('M j, Y') }}</div>
+                            </div>
+                            <p class="wrap-break-word leading-6 text-slate-700">{{ $review->review }}</p>
                         </div>
-                        <p class="text-gray-700">{{ $review->review }}</p>
-                    </div>
-                </li>
+                    </li>
             @empty
-                <li class="mb-4">
-                    <div class="empty-book-item">
-                        <p class="empty-text text-lg font-semibold">No reviews yet</p>
-                    </div>
-                </li>
+                    <li>
+                        <div class="empty-book-item">
+                            <p class="empty-text text-lg font-semibold">Žiadne recenzie</p>
+                        </div>
+                    </li>
             @endforelse
-        </ul>
+            </ul>
+        </div>
     </div>
 @endsection

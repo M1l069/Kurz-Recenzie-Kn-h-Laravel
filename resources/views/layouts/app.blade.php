@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Book Reviews</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
 
     <link rel="icon" href="{{ asset('favicon_books.ico') }}" type="image/x-icon">
@@ -20,13 +21,16 @@
 
     .filter-container {
         @apply mb-4 flex space-x-2 rounded-md bg-slate-100 p-2;
+        @apply mb-4 flex space-x-2 rounded-md bg-slate-100 p-2;
     }
 
     .filter-item {
         @apply flex w-full items-center justify-center rounded-md px-4 py-2 text-center text-sm font-medium text-slate-500;
+        @apply flex w-full items-center justify-center rounded-md px-4 py-2 text-center text-sm font-medium text-slate-500;
     }
 
     .filter-item-active {
+        @apply bg-white shadow-sm text-slate-800 flex w-full items-center justify-center rounded-md px-4 py-2 text-center text-sm font-medium;
         @apply bg-white shadow-sm text-slate-800 flex w-full items-center justify-center rounded-md px-4 py-2 text-center text-sm font-medium;
     }
 
@@ -36,6 +40,7 @@
 
     .book-title {
         @apply text-lg font-semibold text-slate-800 hover:text-slate-600;
+        @apply text-lg font-semibold text-slate-800 hover:text-slate-600;
     }
 
     .book-author {
@@ -44,9 +49,11 @@
 
     .book-rating {
         @apply text-sm font-medium text-slate-700;
+        @apply text-sm font-medium text-slate-700;
     }
 
     .book-review-count {
+        @apply text-xs text-slate-500;
         @apply text-xs text-slate-500;
     }
 

@@ -10,6 +10,8 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class Book extends Model
 {
+    protected $fillable = ['title', 'author'];
+
     use HasFactory;
     public function reviews(){
         return $this->hasMany(Review::class);

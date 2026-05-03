@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
 use App\Models\Book;
 
@@ -81,15 +82,17 @@ class BookController extends Controller {
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
-        //
+        $book = Book::create($request->validated());
+
+        return redirect()->route('books.show', ['book' => $book])->with('success', 'Kniha úspešne vytvorená !');
     }
 
     /**
@@ -107,24 +110,25 @@ class BookController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit(Book $book) {
+        return view('books.edit', ['book' => $book]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(BookRequest $request, Book $book) {
+        $book->update($request->validated());
+
+        return redirect()->route('books.show' , ['book' => $book])->with('success', 'Kniha úspešne aktualizovaná !');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy(Book $book) {
+        $book->delete();
+        return redirect()->route('books.index')->with('success', 'Kniha úspešne vymazaná !');
     }
 }
