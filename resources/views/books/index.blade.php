@@ -19,20 +19,20 @@
         </div>
 
         <form action="{{ route('books.index') }}" method="GET" class="mb-6 space-y-3">
-            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="flex flex-col gap-3 sm:flex-row sm:flex-nowrap sm:items-end">
                 <input
                     type="text"
                     name="title"
                     placeholder="Hľadať podľa názvu..."
                     value="{{ request('title') }}"
-                    class="input h-10 w-full lg:col-span-2"
+                    class="input h-10 w-full sm:flex-1"
                 >
 
                 <label class="sr-only" for="filter">Filter kníh</label>
                 <select
                     id="filter"
                     name="filter"
-                    class="input h-10 w-full"
+                    class="input h-10 w-full sm:w-auto"
                     onchange="this.form.submit()"
                 >
                     @foreach($filters as $key => $label)
@@ -42,9 +42,9 @@
                     @endforeach
                 </select>
 
-                <div class="grid grid-cols-2 gap-2 lg:col-span-4 sm:flex sm:justify-end">
-                    <button type="submit" class="btn h-10 w-full sm:w-auto">Hľadať</button>
-                    <a href="{{ route('books.index') }}" class="btn h-10 w-full sm:w-auto">Vyčistiť všetko</a>
+                <div class="flex flex-row gap-2 justify-center sm:justify-end sm:ml-auto">
+                    <button type="submit" class="btn h-10">Hľadať</button>
+                    <a href="{{ route('books.index') }}" class="btn h-10">Vyčistiť všetko</a>
                 </div>
             </div>
         </form>
