@@ -11,9 +11,7 @@
             <div class="book-info flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
                 <div class="book-author text-base font-semibold text-slate-700 sm:text-lg">od {{ $book->author }}</div>
                 <div class="book-rating flex flex-wrap items-center gap-x-2 gap-y-1">
-                    <div class="mr-0 text-sm font-medium text-slate-700 sm:mr-2">
-                        {{ number_format($book->reviews_avg_rating, 1) }}
-                    </div>
+                    <x-star-rating :rating="$book->reviews_avg_rating" />
                     <span class="book-review-count text-sm text-slate-500">
           {{ $book->reviews_count }} recenzií
         </span>
@@ -30,13 +28,19 @@
         </div>
 
         <div>
+            <div class="mb-4">
+                <a href="{{ route('books.reviews.create', $book) }}" class="reset-link">Pridať recenziu !</a>
+            </div>
+        </div>
+
+        <div>
             <h2 class="mb-4 text-xl font-semibold text-slate-900">Recenzie</h2>
             <ul class="space-y-4">
             @forelse ($book->reviews as $review)
                     <li class="book-item p-4 sm:p-5">
                         <div class="space-y-3">
                             <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                                <div class="font-semibold text-slate-800">Hodnotenie: {{ $review->rating }}/5</div>
+                                <div class="font-semibold text-slate-800">Hodnotenie: <x-star-rating :rating="$review->rating" /></div>
                                 <div class="book-review-count text-xs sm:text-sm">
                                     {{ $review->created_at->format('M j, Y') }}</div>
                             </div>

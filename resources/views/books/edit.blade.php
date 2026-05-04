@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mx-auto w-full max-w-lg px-4 sm:px-0">
-        <a href="{{ route('books.index') }}" class="reset-link inline-block mb-4">← Naspäť</a>
+        <a href="{{ route('books.show', $book) }}" class="reset-link inline-block mb-4">← Naspäť</a>
 
         <div class="mb-4">
             <h1 class="mb-3 text-2xl font-semibold text-slate-900">Upraviť knihu</h1>

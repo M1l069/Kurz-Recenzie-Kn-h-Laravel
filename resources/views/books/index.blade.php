@@ -65,7 +65,7 @@
 
                             <div class="flex items-center justify-between gap-3 sm:flex-col sm:items-end sm:justify-center">
                                 <div class="book-rating">
-                                    {{ number_format($book->reviews_avg_rating, 1) }}
+                                    <x-star-rating :rating="$book->reviews_avg_rating" />
                                 </div>
                                 <div class="book-review-count">
                                     z {{ $book->reviews_count }} recenzií
@@ -83,5 +83,8 @@
                 </li>
             @endforelse
         </ul>
+        <div class="mt-6 sm:mt-8">
+            {{ $books->withQueryString()->links() }}
+        </div>
     </div>
 @endsection
