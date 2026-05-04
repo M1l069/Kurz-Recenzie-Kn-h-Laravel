@@ -5,46 +5,48 @@
     @php
         $filters = [
             '' => 'Latest',
-            'popular_last_month' => 'Popular 1M',
-            'popular_last_6months' => 'Popular 6M',
-            'highest_rated_last_month' => 'Top Rated 1M',
-            'highest_rated_last_6months' => 'Top Rated 6M',
+            'popular_last_month' => 'Populárne za mesiac',
+            'popular_last_6months' => 'Populárne za 6m',
+            'highest_rated_last_month' => 'Najlepšie hodnotené 1m',
+            'highest_rated_last_6months' => 'Najlepšie hodnotené 6m',
         ];
     @endphp
 
     <div class="mx-auto w-full max-w-4xl">
         <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <h1 class="text-2xl font-semibold text-slate-900">Books</h1>
-            <a href="{{ route('books.create') }}" class="btn w-full sm:w-auto">Add New Book</a>
+            <h1 class="text-2xl font-semibold text-slate-900">Knihy</h1>
+            <a href="{{ route('books.create') }}" class="btn w-full sm:w-auto">Pridať knihu</a>
         </div>
 
         <form action="{{ route('books.index') }}" method="GET" class="mb-6 space-y-3">
-            <div class="flex flex-col gap-3 sm:flex-row sm:flex-nowrap sm:items-end">
+            <div class="space-y-3">
                 <input
                     type="text"
                     name="title"
                     placeholder="Hľadať podľa názvu..."
                     value="{{ request('title') }}"
-                    class="input h-10 w-full sm:flex-1"
+                    class="input h-12 w-full text-base sm:h-14 sm:text-lg"
                 >
 
-                <label class="sr-only" for="filter">Filter kníh</label>
-                <select
-                    id="filter"
-                    name="filter"
-                    class="input h-10 w-full sm:w-auto"
-                    onchange="this.form.submit()"
-                >
-                    @foreach($filters as $key => $label)
-                        <option value="{{ $key }}" {{ request('filter', '') === $key ? 'selected' : '' }}>
-                            {{ $label }}
-                        </option>
-                    @endforeach
-                </select>
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-end">
+                    <label class="sr-only" for="filter">Filter kníh</label>
+                    <select
+                        id="filter"
+                        name="filter"
+                        class="input h-10 w-full sm:w-72 sm:flex-none"
+                        onchange="this.form.submit()"
+                    >
+                        @foreach($filters as $key => $label)
+                            <option value="{{ $key }}" {{ request('filter', '') === $key ? 'selected' : '' }}>
+                                {{ $label }}
+                            </option>
+                        @endforeach
+                    </select>
 
-                <div class="flex flex-row gap-2 justify-center sm:justify-end sm:ml-auto">
-                    <button type="submit" class="btn h-10">Hľadať</button>
-                    <a href="{{ route('books.index') }}" class="btn h-10">Vyčistiť všetko</a>
+                    <div class="flex flex-row justify-center gap-2 sm:ml-auto sm:justify-end">
+                        <button type="submit" class="btn h-10">Hľadať</button>
+                        <a href="{{ route('books.index') }}" class="btn h-10">Vyčistiť všetko</a>
+                    </div>
                 </div>
             </div>
         </form>
