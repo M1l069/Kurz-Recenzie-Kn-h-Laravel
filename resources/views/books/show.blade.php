@@ -20,6 +20,13 @@
                 </div>
             </div>
             <a href="{{ route('books.edit', ['book' => $book]) }}" class="btn mt-4 inline-block sm:mt-6">Upraviť knihu</a>
+            <div>
+                <form action="{{ route('books.destroy', $book) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-delete inline-block">Vymazať knihu</button>
+                </form>
+            </div>
         </div>
 
         <div>
