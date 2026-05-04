@@ -6,7 +6,7 @@
 
         <div class="mb-6 space-y-3">
 
-            <h1 class="sticky top-0 text-2xl font-semibold leading-tight text-slate-900 sm:static">{{ $book->title }}</h1>
+            <h1 class="text-2xl font-semibold leading-tight text-slate-900 sm:sticky sm:top-0 sm:z-10 sm:bg-white sm:py-2">{{ $book->title }}</h1>
 
             <div class="book-info flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
                 <div class="book-author text-base font-semibold text-slate-700 sm:text-lg">od {{ $book->author }}</div>
