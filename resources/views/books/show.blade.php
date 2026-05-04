@@ -19,6 +19,7 @@
         </span>
                 </div>
             </div>
+            <a href="{{ route('books.edit', ['book' => $book]) }}" class="btn mt-4 inline-block sm:mt-6">Upraviť knihu</a>
         </div>
 
         <div>
